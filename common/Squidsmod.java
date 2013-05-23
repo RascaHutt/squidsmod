@@ -13,8 +13,10 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid="Squid_Squidsmod", name="Squidsmod", version="Alpha 1")
 @NetworkMod(clientSideRequired=true, serverSideRequired=true)
@@ -31,6 +33,7 @@ public static CreativeTabs SquidsModTab = new SquidsModTab(CreativeTabs.getNextI
       //Blocks Register:
 public static Block fengiteOre;
 public static Block fengiteGlass;
+
 
       //Items 
 public static Item fengiteIngot;
@@ -58,9 +61,15 @@ public void load(FMLInitializationEvent event){
 	fengiteSword = new ItemFengiteSword(fengiteSwordID, SQUIDSMOD1).setUnlocalizedName("itemfengitesword");
 	fengiteSpade = new ItemFengiteSpade(fengiteSpadeID, SQUIDSMOD).setUnlocalizedName("itemfengitespade");
 	fengiteGlass = new BlockFengiteGlass(fengiteGlassID, Material.glass).setUnlocalizedName("tilefengiteglass").setStepSound(Block.soundGlassFootstep).setHardness(5.0F);
+	
 	gameRegisters();
  	languageRegisters();
  	craftingRecipes();
+ 	
+
+ 	
+ 	//WorldGen
+ 	GameRegistry.registerWorldGenerator(new SquidsModOreGeneration());
  	
 //Smelting Recipies:
  	
